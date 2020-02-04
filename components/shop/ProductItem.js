@@ -1,10 +1,13 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet, Button } from 'react-native'
+import Colors from '../../constants/Colors'
 
 const ProductItem = ({ data, onViewDetail, onAddToCart }) => {
   return (
     <View style={styles.product}>
-      <Image style={styles.image} source={{ uri: data.imageUrl }} />
+      <View style={styles.imageContainer}>
+        <Image style={styles.image} source={{ uri: data.imageUrl }} />
+      </View>
       <View style={styles.contentContainer}>
         <View style={styles.textContainer}>
           <Text style={styles.title}>{data.title}</Text>
@@ -12,11 +15,13 @@ const ProductItem = ({ data, onViewDetail, onAddToCart }) => {
         </View>
         <View style={styles.buttonContainer}>
           <Button
+            color={Colors.lightBlue}
             style={styles.button}
             title='View Details'
             onPress={onViewDetail}
           />
           <Button
+            color={Colors.red}
             style={styles.button}
             title='To Cart'
             onPress={onAddToCart}
@@ -38,18 +43,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     height: 300,
     margin: 20,
-    // overflow: 'hidden'
   },
-  image: {
+  imageContainer: {
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
+    overflow: 'hidden',
     width: '100%',
     height: '60%',
   },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
   contentContainer: {
+    justifyContent: 'space-between',
     padding: 10
   },
   textContainer: {
     paddingHorizontal: 10,
-    marginBottom: 10
+    marginBottom: 15
   },
   title: {
     fontSize: 18,
@@ -62,7 +74,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    borderTopWidth: .5,
+    borderColor: '#eee'
   }
 })
 
