@@ -1,3 +1,4 @@
+import { Platform } from 'react-native'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import Colors from '../constants/Colors'
@@ -16,3 +17,6 @@ const defaultNavOptions = {
 const ProductsNavigator = createStackNavigator({
   ProductOverview: ProductOverviewScreen
 }, defaultNavOptions)
+
+
+export default createAppContainer(ProductsNavigator)
