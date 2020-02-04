@@ -18,7 +18,14 @@ const ProductOverviewScreen = props => {
       keyExtractor={item => item.id}
       renderItem={itemData => <ProductItem
         data={itemData.item}
-        onViewDetail={viewDetailHandler}
+        onViewDetail={() => props.navigation.navigate(
+          'ProductDetail',
+          {
+            productId: itemData.item.id,
+            productTitle: itemData.item.title
+          }
+        )
+        }
         onAddToCart={productAddHandler}
       />}
     />

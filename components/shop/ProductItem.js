@@ -1,13 +1,20 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet, Button } from 'react-native'
+import { View, Text, Image, StyleSheet, Button, TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native'
 import Colors from '../../constants/Colors'
 
 const ProductItem = ({ data, onViewDetail, onAddToCart }) => {
+  let TouchableComp = TouchableOpacity
+  if (Platform.OS === 'android' && Platform.Version >= 21) {
+    TouchableComp = TouchableNativeFeedback
+  }
+
   return (
     <View style={styles.product}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: data.imageUrl }} />
-      </View>
+      <TouchableComp style={styles.imageContainer} onPress={onViewDetail} useForeground>
+        <View>
+          <Image style={styles.image} source={{ uri: data.imageUrl }} />
+        </View>
+      </TouchableComp>
       <View style={styles.contentContainer}>
         <View style={styles.textContainer}>
           <Text style={styles.title}>{data.title}</Text>
