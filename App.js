@@ -5,9 +5,11 @@ import { StyleSheet, Text, View } from 'react-native'
 import ShopNavigator from './navigation/ShopNavigator'
 
 import productsReducer from './store/reducers/productsReducer'
+import cartReducer from './store/reducers/cartReducer'
 
 const rootReducer = combineReducers({
-  products: productsReducer
+  products: productsReducer,
+  cart: cartReducer
 })
 
 const store = createStore(rootReducer)
